@@ -1,9 +1,10 @@
 import React from 'react';
 
 export const ProductFilters = (props) => {
-  const onPriceChange = (e) => {
+  const { minPrice, maxPrice, onPriceChange } = props;
+  const _onPriceChange = (e) => {
     // TODO: implement handler
-    props.onPriceChange(e.target.name, e.target.value);
+    onPriceChange(e.target.name, e.target.value);
   };
   // TODO: bind handlers and props
   return (
@@ -13,16 +14,18 @@ export const ProductFilters = (props) => {
         type='number'
         id='minPrice'
         name='minPrice'
-        onChange={(e) => onPriceChange(e)}
+        onChange={(e) => _onPriceChange(e)}
         placeholder='Min price...'
+        defaultValue={minPrice}
       />
       <label htmlFor='maxPrice'>Max Price:</label>
       <input
         type='number'
         id='maxPrice'
         name='maxPrice'
-        onChange={(e) => onPriceChange(e)}
+        onChange={(e) => _onPriceChange(e)}
         placeholder='Max price...'
+        defaultValue={maxPrice}
       />
     </div>
   );

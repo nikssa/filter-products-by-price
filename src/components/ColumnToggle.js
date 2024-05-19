@@ -1,16 +1,17 @@
 import React from 'react';
 
 export const ColumnToggle = (props) => {
-  const onToggle = (name, checked) => {
+  const { toggles, onToggle } = props;
+  const _onToggle = (name, checked) => {
     // TODO: implement checkbox click handler
-    props.onToggle(name, checked);
+    onToggle(name, checked);
   };
 
   // TODO: Bind handlers and props
   return (
     <div className='toggle-columns'>
-      {Object.keys(props.toggles).map((toggle, index) => {
-        const checked = props.toggles[toggle];
+      {Object.keys(toggles).map((toggle, index) => {
+        const checked = toggles[toggle];
         return (
           <div key={index}>
             <label htmlFor={toggle}>{toggle}</label>
@@ -18,7 +19,7 @@ export const ColumnToggle = (props) => {
               id={toggle}
               name={toggle}
               type='checkbox'
-              onChange={(e) => onToggle(e.target.name, e.target.checked)}
+              onChange={(e) => _onToggle(e.target.name, e.target.checked)}
               checked={checked}
             />
           </div>

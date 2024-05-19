@@ -8,8 +8,7 @@ import products from '../assets/products.json';
 
 export const ProductSearch = (props) => {
   const [price, setPrice] = useState({ minPrice: '', maxPrice: '' });
-
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(products);
 
   const [toggles, setToggles] = useState({
     id: true,
@@ -34,18 +33,17 @@ export const ProductSearch = (props) => {
     // TODO: implement handler for filtering products by price range
     setFilteredItems(
       products.filter((product) => {
-        if (!price.minPrice && !price.maxPrice) {
-          return false;
-        }
         if (
           price.minPrice &&
-          (product.price < price.minPrice || price.minPrice <= 0)
+          (product.price < price.minPrice ||
+            (price.minPrice < 0 && price.maxPrice < 0))
         ) {
           return false;
         }
         if (
           price.maxPrice &&
-          (product.price > price.maxPrice || price.maxPrice <= 0)
+          (product.price > price.maxPrice ||
+            (price.maxPrice < 0 && price.minPrice < 0))
         ) {
           return false;
         }

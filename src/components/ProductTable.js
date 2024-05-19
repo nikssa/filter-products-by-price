@@ -52,7 +52,14 @@ export const ProductTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {products.length > 0 ? (
+          {isAllOff ? (
+            <tr>
+              <td>
+                Check at least one of the column checkboxes in order to see some
+                data.
+              </td>
+            </tr>
+          ) : products.length > 0 ? (
             <>{tableRows}</>
           ) : (
             <tr>
